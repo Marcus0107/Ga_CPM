@@ -1,0 +1,6 @@
+c:\users\marcus\documents\visual studio 2015\Projects\Genetischer Algorithmus\Genetischer Algorithmus\bin\Debug\Genetischer Algorithmus.exe.config
+c:\users\marcus\documents\visual studio 2015\Projects\Genetischer Algorithmus\Genetischer Algorithmus\bin\Debug\Genetischer Algorithmus.exe
+c:\users\marcus\documents\visual studio 2015\Projects\Genetischer Algorithmus\Genetischer Algorithmus\bin\Debug\Genetischer Algorithmus.pdb
+c:\users\marcus\documents\visual studio 2015\Projects\Genetischer Algorithmus\Genetischer Algorithmus\obj\Debug\Genetischer Algorithmus.csprojResolveAssemblyReference.cache
+c:\users\marcus\documents\visual studio 2015\Projects\Genetischer Algorithmus\Genetischer Algorithmus\obj\Debug\Genetischer Algorithmus.exe
+c:\users\marcus\documents\visual studio 2015\Projects\Genetischer Algorithmus\Genetischer Algorithmus\obj\Debug\Genetischer Algorithmus.pdb
