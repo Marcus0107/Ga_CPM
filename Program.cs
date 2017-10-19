@@ -29,7 +29,9 @@ namespace Genetischer_Algorithmus
 
             Debug.WriteLine("After Sorting");
             Debug.WriteLine(pop.ToString());
-        
+
+            GA ga = new GA(pop);
+            ga.Mutatation(1);
 
         }
 
