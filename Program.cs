@@ -22,26 +22,30 @@ namespace Genetischer_Algorithmus
 
             pop.calculateFittnessForPopulation();
 
-            Debug.WriteLine("Before Sorting");
-            Debug.WriteLine(pop.ToString());
+            Console.WriteLine("Before Sorting");
+            Console.WriteLine(pop.ToString());
 
             pop.sortByFitnessDescending();
 
-            Debug.WriteLine("After Sorting");
-            Debug.WriteLine(pop.ToString());
+            Console.WriteLine("After Sorting");
+            Console.WriteLine(pop.ToString());
 
             GA ga = new GA(pop);
-            ga.Mutatation(1);
+
+            ga.Crossover(pop.population[0], pop.population[1]);
+
+            //Console.ReadKey(true);
 
         }
 
         public static List<Allel>  readCitiesFromFile()
         {
             List<Allel> individumGen = new List<Allel>();
-            using (var reader = new StreamReader(@"C:\Users\Marcus\Dropbox\Master Semester 2\Genetische Algorithmen\76_städe.csv"))
+            using (var reader = new StreamReader(@"C:\Users\Marcus\Dropbox\Master Semester 2\Genetische Algorithmen\20_städte.csv"))
             {
                 while (!reader.EndOfStream)
                 {
+
                     var line = reader.ReadLine();
                     var vals = line.Split(';');
                     individumGen.Add(new Allel(int.Parse(vals[0]), int.Parse(vals[1]), int.Parse(vals[2])));

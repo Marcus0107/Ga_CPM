@@ -8,21 +8,21 @@ namespace Genetischer_Algorithmus
 {
     public class Population
     {
-        public List<Individuum> poulation;
+        public List<Individuum> population;
 
         public Population()
         {
-            poulation = new List<Individuum>();
+            population = new List<Individuum>();
         }
 
         public void addIndividuum(Individuum ind)
         {
-            poulation.Add(ind);
+            population.Add(ind);
         }
 
         public void calculateFittnessForPopulation()
         {
-            foreach(Individuum ind in poulation)
+            foreach(Individuum ind in population)
             {
                 ind.calculateFitness();
             }
@@ -30,13 +30,13 @@ namespace Genetischer_Algorithmus
 
         public void sortByFitnessDescending()
         {
-            poulation.Sort((ind2, ind1) => ind1.fittnes.CompareTo(ind2.fittnes));
+            population.Sort((ind2, ind1) => ind1.fittnes.CompareTo(ind2.fittnes));
         }
 
         public override string ToString()
         {
             string text = "";
-           foreach(Individuum ind in poulation)
+           foreach(Individuum ind in population)
             {
                 text += "Fitness " + ind.fittnes+"\n";
             }

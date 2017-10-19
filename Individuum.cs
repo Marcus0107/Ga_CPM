@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Genetischer_Algorithmus
 {
-  public  class Individuum
+    public class Individuum
     {
         public List<Allel> gen;
         public double fittnes;
@@ -22,7 +22,7 @@ namespace Genetischer_Algorithmus
         public override string ToString()
         {
             string text = "";
-            foreach(Allel all in gen)
+            foreach (Allel all in gen)
             {
                 text += (all.id + ";");
             }
@@ -32,13 +32,18 @@ namespace Genetischer_Algorithmus
 
         public void calculateFitness()
         {
+            int difx;
+            int dify;
             double fit = 0.0;
-            for(int i = 0; i < gen.Count - 1; i++)
+            for (int i = 0; i < gen.Count - 2; i++)
             {
-                int difx = gen[i].x_nav - gen[i + 1].x_nav;
-                int dify = gen[i].y_nav - gen[i + 1].y_nav;
+               difx  = gen[i].x_nav - gen[i + 1].x_nav;
+                 dify = gen[i].y_nav - gen[i + 1].y_nav;
                 fit += Math.Sqrt(difx * difx + dify * dify);
             }
+             difx = gen[gen.Count -1].x_nav - gen[0].x_nav;
+             dify = gen[gen.Count-1].y_nav - gen[0].y_nav;
+            fit += Math.Sqrt(difx * difx + dify * dify);
             fittnes = fit;
         }
     }
