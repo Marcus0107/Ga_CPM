@@ -14,6 +14,10 @@ namespace Genetischer_Algorithmus
         {
             population = new List<Individuum>();
         }
+        public Population(List<Individuum> inds)
+        {
+            population = inds;
+        }
 
         public void addIndividuum(Individuum ind)
         {
@@ -30,7 +34,7 @@ namespace Genetischer_Algorithmus
 
         public void sortByFitnessDescending()
         {
-            population.Sort((ind2, ind1) => ind1.fittnes.CompareTo(ind2.fittnes));
+            population.Sort((ind1, ind2) => ind1.fittnes.CompareTo(ind2.fittnes));
         }
 
         public override string ToString()

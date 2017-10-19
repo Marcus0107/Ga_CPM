@@ -9,9 +9,9 @@ namespace Genetischer_Algorithmus
 {
     public class GA
     {
-        Population selectedParents;
-        Population parents;
-        Population children;
+        public Population selectedParents;
+        public Population parents;
+        public Population children;
         Random rnd = new Random();
 
         public GA(Population population)
@@ -47,7 +47,7 @@ namespace Genetischer_Algorithmus
                 }
             }
         }
-        public void Crossover(Individuum mother, Individuum father)
+        private void Crossover(Individuum mother, Individuum father)
         {
             Random rnd = new Random();
             Individuum child1 = new Individuum();
@@ -74,6 +74,7 @@ namespace Genetischer_Algorithmus
 
 
             newPositions = new List<KeyValuePair<Allel, int>>();
+            genNewPart = new List<Allel>();
             for (int i = crossoverPoint; i < father.gen.Count; i++)
             {
                 Allel all = father.gen[i];
@@ -95,14 +96,16 @@ namespace Genetischer_Algorithmus
             children.addIndividuum(child2);
             int gjhh = 0;
         }
-
-
         public void createNewChildren()
         {
             for (int i = 0; i < parents.population.Count; i += 2)
             {
-
+                Crossover(parents.population[i], parents.population[i + 1]);
             }
+        }
+        public void setNewParents(Population newParents)
+        {
+            parents = newParents;
         }
 
     }
