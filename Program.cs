@@ -56,7 +56,7 @@ namespace Genetischer_Algorithmus
                 Debug.WriteLine(ga.parents.population[0].fittnes);
                 if(i%500 == 0)
                 {
-                    Console.WriteLine(i);
+                    Console.WriteLine(i +"\t" + ga.parents.population[0].fittnes);
                     GC.Collect();
                 }
                 ga.children = new Population();
