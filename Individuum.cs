@@ -28,8 +28,6 @@ namespace Genetischer_Algorithmus
             }
             return text;
         }
-
-
         public void calculateFitness()
         {
             int difx;

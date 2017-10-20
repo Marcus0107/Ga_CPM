@@ -9,59 +9,64 @@ namespace Genetischer_Algorithmus
     {
         static void Main(string[] args)
         {
-            List<Allel> individumGen = readCitiesFromFile();
+          //  int rounds = int.Parse(args[0]);
+            
+            //Erstes Gen in reihenfolge aus der Liste
+            //@ vor dem Pfad ist wichtig
+            List<Allel> individumGen = readCitiesFromFile(@"C:\Users\Marcus\Dropbox\Master Semester 2\Genetische Algorithmen\76_städte.csv");
 
             Population pop = new Population();
             var rnd = new Random();
 
+            //Erzeuge zufällige Gene für die initale population
             for (int i = 0; i < 50; i++)
             {
-                individumGen.Shuffle(rnd);
                 pop.addIndividuum(new Individuum(new List<Allel>(individumGen)));
+                individumGen.Shuffle(rnd);
             }
 
+            //Berechne die Fittness für jedes einzelene Indiviuum der ersten Population
             pop.calculateFittnessForPopulation();
-            List<Individuum> bestOfGeneration = new List<Individuum>();
 
             GA ga = new GA(pop);
 
-            for (int i = 0; i < 5000; i++)
+            for (int i = 0; i < 50000; i++)
             {
+                //Führe Zyklus des Genetischen Algrothmus durch
                 ga.Selection();
                 ga.createNewChildren();
-                ga.Mutatation(1);
+                ga.Mutatation(5);
 
+                //Sortiere die Eltern und Kindern nach der Fittness
                 ga.parents.sortByFitnessDescending();
+                ga.children.calculateFittnessForPopulation();
                 ga.children.sortByFitnessDescending();
 
+                //Erzeuge neue Generation aus den besten von Eltern und Kindern
                 List<Individuum> newGen = new List<Individuum>();
                 newGen.AddRange(ga.parents.population.GetRange(0, 25));
                 newGen.AddRange(ga.children.population.GetRange(0, 25));
 
+                //Sortiere die neue GEneration nach der Fittness
                 ga.setNewParents(new Population(new List<Individuum>(newGen)));
                 ga.parents.calculateFittnessForPopulation();
                 ga.parents.sortByFitnessDescending();
-                bestOfGeneration.Add(ga.parents.population[0]);
+
+                //Schreibe den besten aus der Population auf die Konsole
+                Debug.WriteLine(ga.parents.population[0].fittnes);
+                if(i%500 == 0)
+                {
+                    Console.WriteLine(i);
+                    GC.Collect();
+                }
+                ga.children = new Population();
             }
-
-            Population bestOf = new Population(bestOfGeneration);
-            bestOf.sortByFitnessDescending();
-            Debug.WriteLine(bestOf.ToString());
-
-
-
-
-            //    Debug.WriteLine("Parents best:\n" + ga.parents.population[0].fittnes.ToString());
-            //    Debug.WriteLine("Parents worst:\n" + ga.parents.population[49].fittnes.ToString());
-
-            //    Debug.WriteLine("Children best:\n" + ga.children.population[0].fittnes.ToString());
-            //    Debug.WriteLine("Children worst:\n" + ga.children.population[49].fittnes.ToString());
         }
 
-        public static List<Allel> readCitiesFromFile()
+        public static List<Allel> readCitiesFromFile(string pathToFile)
         {
             List<Allel> individumGen = new List<Allel>();
-            using (var reader = new StreamReader(@"C:\Users\Marcus\Dropbox\Master Semester 2\Genetische Algorithmen\76_städte.csv"))
+            using (var reader = new StreamReader(pathToFile))
             {
                 while (!reader.EndOfStream)
                 {

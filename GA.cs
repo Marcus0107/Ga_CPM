@@ -9,7 +9,6 @@ namespace Genetischer_Algorithmus
 {
     public class GA
     {
-        public Population selectedParents;
         public Population parents;
         public Population children;
         Random rnd = new Random();
@@ -18,15 +17,16 @@ namespace Genetischer_Algorithmus
         {
             parents = population;
             children = new Population();
-            selectedParents = new Population();
         }
 
         public void Selection()
         {
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 46; i++)
             {
-                selectedParents.addIndividuum(parents.population[rnd.Next(0, 50)]);
+                parents.addIndividuum(parents.population[rnd.Next(0, 50)]);
             }
+            parents.sortByFitnessDescending();
+            parents.population.AddRange(parents.population.GetRange(0, 4));
         }
         public void Mutatation(int pChange)
         {
@@ -40,7 +40,6 @@ namespace Genetischer_Algorithmus
             {
                 if (toHits.Contains(rnd.Next(0, 100)))
                 {
-                    Console.WriteLine("Element hit");
                     int start = rnd.Next(0, ind.gen.Count);
                     int end = rnd.Next(start, ind.gen.Count);
                     ind.gen.Reverse(start, end - start);
@@ -94,7 +93,6 @@ namespace Genetischer_Algorithmus
 
             children.addIndividuum(child1);
             children.addIndividuum(child2);
-            int gjhh = 0;
         }
         public void createNewChildren()
         {

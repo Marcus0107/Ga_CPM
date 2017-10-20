@@ -42,7 +42,7 @@ namespace Genetischer_Algorithmus
             string text = "";
            foreach(Individuum ind in population)
             {
-                text += "Fitness " + ind.fittnes+"\n";
+                text += ind.fittnes +";";
             }
             return text;
         }
