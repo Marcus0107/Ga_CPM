@@ -30,19 +30,22 @@ namespace Genetischer_Algorithmus
         }
         public void calculateFitness()
         {
+            int fit = 0;
+            for (int i = 0; i < gen.Count-2; i++)
+            {
+                fit += euclid_2d(gen[i], gen[i + 1]);
+            }
+            fit += euclid_2d(gen[gen.Count - 1], gen[0]);
+            fittnes = fit;
+        }
+        public int euclid_2d(Allel gen1, Allel gen2)
+        {
             int difx;
             int dify;
-            double fit = 0.0;
-            for (int i = 0; i < gen.Count - 2; i++)
-            {
-               difx  = gen[i].x_nav - gen[i + 1].x_nav;
-                 dify = gen[i].y_nav - gen[i + 1].y_nav;
-                fit += Math.Sqrt(difx * difx + dify * dify);
-            }
-             difx = gen[gen.Count -1].x_nav - gen[0].x_nav;
-             dify = gen[gen.Count-1].y_nav - gen[0].y_nav;
-            fit += Math.Sqrt(difx * difx + dify * dify);
-            fittnes = fit;
+
+            difx = gen1.x_nav - gen2.x_nav;
+            dify = gen1.y_nav - gen2.y_nav;
+            return Convert.ToInt32(Math.Abs(Math.Sqrt(difx * difx + dify * dify)));
         }
     }
 }

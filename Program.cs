@@ -30,7 +30,7 @@ namespace Genetischer_Algorithmus
 
             GA ga = new GA(pop);
 
-            for (int i = 0; i < 50000; i++)
+            for (int i = 0; i < 500000; i++)
             {
                 //Führe Zyklus des Genetischen Algrothmus durch
                 ga.Selection();

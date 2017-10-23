@@ -53,7 +53,7 @@ namespace Genetischer_Algorithmus
             Individuum child2 = new Individuum();
             List<Allel> genNewPart = new List<Allel>();
             List<KeyValuePair<Allel, int>> newPositions = new List<KeyValuePair<Allel, int>>();
-            int crossoverPoint = rnd.Next(8, parents.population[0].gen.Count);
+            int crossoverPoint = rnd.Next(0, parents.population[0].gen.Count);
 
 
             for (int i = crossoverPoint; i < mother.gen.Count; i++)
