@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 
 namespace Genetischer_Algorithmus
 {
@@ -9,17 +10,40 @@ namespace Genetischer_Algorithmus
     {
         static void Main(string[] args)
         {
-          //  int rounds = int.Parse(args[0]);
-            
+           // run_GA_Algorith(5, 50, 5, 50);
+
+           // run_brute_force(5);
+
+        }
+
+        public static void run_brute_force(int cityCount)
+        {
+            List<Allel> individumGen = readCitiesFromFile(@"C:\Users\Marcus\Dropbox\Master Semester 2\Genetische Algorithmen\280_städte.csv");
+            List<Individuum> indis = new List<Individuum>();
+
+            foreach (var permutation in individumGen.GetRange(0, cityCount).GetPermutations())
+            {
+                indis.Add(new Individuum(permutation.ToList()));
+            }
+            Population pop = new Population(indis);
+            pop.calculateFittnessForPopulation();
+            pop.sortByFitnessDescending();
+
+            Debug.WriteLine("Fitness:\t" + pop.population[0].fittnes + "\tSequenz" + pop.population[0].ToString());
+        }
+
+        public static void run_GA_Algorith(int cityCount, int roundCount, int mutationProbabilityInPercent, int populationSize = 50)
+        {
             //Erstes Gen in reihenfolge aus der Liste
             //@ vor dem Pfad ist wichtig
-            List<Allel> individumGen = readCitiesFromFile(@"C:\Users\Marcus\Dropbox\Master Semester 2\Genetische Algorithmen\76_städte.csv");
+            List<Allel> allIndividumGen = readCitiesFromFile(@"C:\Users\Marcus\Dropbox\Master Semester 2\Genetische Algorithmen\76_städte.csv");
+            List<Allel> individumGen = allIndividumGen.GetRange(0, cityCount);
 
             Population pop = new Population();
             var rnd = new Random();
 
             //Erzeuge zufällige Gene für die initale population
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < populationSize; i++)
             {
                 pop.addIndividuum(new Individuum(new List<Allel>(individumGen)));
                 individumGen.Shuffle(rnd);
@@ -30,12 +54,12 @@ namespace Genetischer_Algorithmus
 
             GA ga = new GA(pop);
 
-            for (int i = 0; i < 500000; i++)
+            for (int i = 0; i < roundCount; i++)
             {
                 //Führe Zyklus des Genetischen Algrothmus durch
                 ga.Selection();
                 ga.createNewChildren();
-                ga.Mutatation(5);
+                ga.Mutatation(mutationProbabilityInPercent);
 
                 //Sortiere die Eltern und Kindern nach der Fittness
                 ga.parents.sortByFitnessDescending();
@@ -54,14 +78,15 @@ namespace Genetischer_Algorithmus
 
                 //Schreibe den besten aus der Population auf die Konsole
                 Debug.WriteLine(ga.parents.population[0].fittnes);
-                if(i%500 == 0)
+                if (i % 500 == 0)
                 {
-                    Console.WriteLine(i +"\t" + ga.parents.population[0].fittnes);
+                    Console.WriteLine(i + "\t" + ga.parents.population[0].fittnes);
                     GC.Collect();
                 }
                 ga.children = new Population();
             }
         }
+
 
         public static List<Allel> readCitiesFromFile(string pathToFile)
         {
@@ -80,20 +105,4 @@ namespace Genetischer_Algorithmus
         }
     }
 
-
-    public static class IEnumerableExtensions
-    {
-        public static void Shuffle<T>(this IList<T> list, Random rnd)
-        {
-            for (var i = 0; i < list.Count; i++)
-                list.Swap(i, rnd.Next(i, list.Count));
-        }
-
-        public static void Swap<T>(this IList<T> list, int i, int j)
-        {
-            var temp = list[i];
-            list[i] = list[j];
-            list[j] = temp;
-        }
-    }
 }

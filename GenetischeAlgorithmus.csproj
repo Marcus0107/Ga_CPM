@@ -46,10 +46,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Allel.cs" />
-    <Compile Include="GA.cs" />
-    <Compile Include="Individuum.cs" />
-    <Compile Include="Population.cs" />
+    <Compile Include="GA\Allel.cs" />
+    <Compile Include="Composite\AllelComposite.cs" />
+    <Compile Include="Composite\AllelLeave.cs" />
+    <Compile Include="Composite\Composite.cs" />
+    <Compile Include="GA\GA.cs" />
+    <Compile Include="GA\Individuum.cs" />
+    <Compile Include="GA\Population.cs" />
+    <Compile Include="IEnumerableExtensions.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
