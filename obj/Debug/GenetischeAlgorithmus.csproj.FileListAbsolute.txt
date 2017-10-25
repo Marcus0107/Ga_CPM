@@ -2,6 +2,5 @@ C:\Users\Marcus\ga_cpm\bin\Debug\GenetischerAlgorithmus.exe.config
 C:\Users\Marcus\ga_cpm\bin\Debug\GenetischerAlgorithmus.exe
 C:\Users\Marcus\ga_cpm\bin\Debug\GenetischerAlgorithmus.pdb
 C:\Users\Marcus\ga_cpm\obj\Debug\GenetischeAlgorithmus.csprojResolveAssemblyReference.cache
-C:\Users\Marcus\ga_cpm\obj\Debug\GenetischeAlgorithmus.csproj.CoreCompileInputs.cache
 C:\Users\Marcus\ga_cpm\obj\Debug\GenetischerAlgorithmus.exe
 C:\Users\Marcus\ga_cpm\obj\Debug\GenetischerAlgorithmus.pdb
